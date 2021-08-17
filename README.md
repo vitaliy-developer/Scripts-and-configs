@@ -1,8 +1,11 @@
-# Scripts-and-configs
-My scripts and cofigs
+# My scripts and configs
 
-checking-users.sh
-    In this script, we perform authorization
+a) checking-users.sh
+	In this script, we perform authorization
 
-checking-credentials.sh
-    The username and password for the specified host is being brute-force
+b) checking-credentials.sh
+	The username and password for the specified host is being brute-force
+
+c) static_ip.sh
+	Installing a static IP
+
