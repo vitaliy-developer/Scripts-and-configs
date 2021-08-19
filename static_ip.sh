@@ -78,10 +78,21 @@ sed -i 's/BOOTPROTO=dhcp/BOOTPROTO=static/g' /etc/sysconfig/network-scripts/$dev
 echo -n "Please enter a new IP address: "
 read address
 
+# Check if the IP address exists
+if grep IPADDR= /etc/sysconfig/network-scripts/$device > /dev/null
+then
+sed -i '/IPADDR=/d' /etc/sysconfig/network-scripts/$device
+fi  
 sed -i "4a\IPADDR=${address}" /etc/sysconfig/network-scripts/$device
 
+# Checking if the MASK exists
+if  grep NETMASK= /etc/sysconfig/network-scripts/$device > /dev/null
+then
+sed -i '/NETMASK=/d' /etc/sysconfig/network-scripts/$device
+fi
 sed -i '5a\NETMASK=255.255.255.0' /etc/sysconfig/network-scripts/$device
 
+# ---
 sed -i 's/IPV6INIT=yes/IPV6INIT=no/g' /etc/sysconfig/network-scripts/$device
 
 echo On $device installed new static IP: $address
@@ -90,5 +101,6 @@ echo ---------------------------------------------------------------
 echo "----------------------------------------------"
 echo "|...WARNING... Restarting the network service|"
 echo "----------------------------------------------"
-echo "If you are using SSH then use a new IP: $address"
+echo "If you are using SSH then please reconnect use a new IP: $address"
+echo "... The script completed successfully ..."
 systemctl restart network
