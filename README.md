@@ -9,3 +9,5 @@ b) checking-credentials.sh
 c) static_ip.sh
 	Installing a static IP
 
+d) LearnDB.bak
+	Learning MS SQL
